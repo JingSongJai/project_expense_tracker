@@ -2,6 +2,7 @@ import 'package:expanse_tracker/data/constant.dart';
 import 'package:expanse_tracker/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class SideBarWidget extends StatefulWidget {
   const SideBarWidget({super.key});
@@ -17,10 +18,9 @@ class _SideBarWidgetState extends State<SideBarWidget> {
   Widget build(BuildContext context) {
     return NavigationRail(
       leading: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SvgPicture.asset(
-          'assets/svg/Logo Icon.svg',
-          colorFilter: ColorFilter.mode(Constant.primaryColor, BlendMode.srcIn),
+        padding: const EdgeInsets.all(10.0),
+        child: CircleAvatar(
+          backgroundImage: AssetImage('assets/png/App Icon.png'),
         ),
       ),
       indicatorShape: RoundedRectangleBorder(
@@ -42,7 +42,7 @@ class _SideBarWidgetState extends State<SideBarWidget> {
             width: 18,
           ),
           label: Text(
-            menus[index]['title']!,
+            menus[index]['title']!.tr,
             style: TextStyle(
               fontSize: 13,
               color:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class StatisWidget extends StatelessWidget {
+class StatisWidget extends StatefulWidget {
   const StatisWidget({
     super.key,
     required this.title,
@@ -14,60 +14,94 @@ class StatisWidget extends StatelessWidget {
   final IconData icon;
 
   @override
+  State<StatisWidget> createState() => _StatisWidgetState();
+}
+
+class _StatisWidgetState extends State<StatisWidget> {
+  bool isHover = false;
+  double value = 10;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [firstColor, secondColor]),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            right: -50,
-            top: -20,
-            child: Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(50),
-                borderRadius: BorderRadius.circular(75),
+    return MouseRegion(
+      onHover: (_) {
+        setState(() {
+          if (!isHover) value += 3;
+          isHover = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          if (isHover) value -= 3;
+          isHover = false;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [widget.firstColor, widget.secondColor],
+          ),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: value - 7,
+              color: Colors.grey.shade400,
+              offset: Offset(0, value - 10),
+            ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              right: -50,
+              top: -20,
+              child: Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(50),
+                  borderRadius: BorderRadius.circular(75),
+                ),
               ),
             ),
-          ),
-          Positioned(
-            right: -20,
-            top: 60,
-            child: Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(50),
-                borderRadius: BorderRadius.circular(75),
+            Positioned(
+              right: -20,
+              top: 60,
+              child: Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(50),
+                  borderRadius: BorderRadius.circular(75),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(title, style: TextStyle(fontSize: 11)),
-                    const Spacer(),
-                    Icon(icon, size: 15),
-                  ],
-                ),
-                Text(
-                  number,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 40),
-                Text('View Detail', style: TextStyle(fontSize: 12)),
-              ],
+            AnimatedPadding(
+              duration: const Duration(milliseconds: 200),
+              padding: EdgeInsets.all(value),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(widget.title, style: TextStyle(fontSize: 11)),
+                      const Spacer(),
+                      Icon(widget.icon, size: 15),
+                    ],
+                  ),
+                  Text(
+                    widget.number,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 50),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

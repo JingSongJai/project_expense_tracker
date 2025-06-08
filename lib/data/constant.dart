@@ -16,7 +16,6 @@ class Constant {
       'title': 'Recurring Payment',
       'icon': 'assets/svg/Recurring Payment Icon.svg',
     },
-    {'title': 'Notification', 'icon': 'assets/svg/Notification Icon.svg'},
     {'title': 'Settings', 'icon': 'assets/svg/Setting Icon.svg'},
   ];
 

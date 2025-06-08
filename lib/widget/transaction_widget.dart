@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:expanse_tracker/data/box.dart';
 import 'package:expanse_tracker/main.dart';
+import 'package:expanse_tracker/model/category_model.dart';
 import 'package:expanse_tracker/model/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -23,6 +24,16 @@ class TransactionItem extends StatefulWidget {
 
 class _TransactionItemState extends State<TransactionItem> {
   final _data = ['Edit', 'Delete'];
+  late CategoryModel category;
+
+  @override
+  void initState() {
+    super.initState();
+    category = categories.value.singleWhere(
+      (cate) => cate.name.compareTo(widget.expense.category) == 0,
+      orElse: () => categories.value[0],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,55 +50,33 @@ class _TransactionItemState extends State<TransactionItem> {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color:
-                  Constant.expenseCategories.singleWhere(
-                    (cate) =>
-                        cate['name'].toString().compareTo(
-                          widget.expense.category,
-                        ) ==
-                        0,
-                    orElse:
-                        () => {
-                          'color': Color.fromARGB(
-                            255,
-                            Random().nextInt(256),
-                            Random().nextInt(256),
-                            Random().nextInt(256),
-                          ),
-                        },
-                  )['color'],
+              color: Color(category.color ?? 0xFF000000),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Icon(
-              Constant.expenseCategories.singleWhere(
-                (cate) =>
-                    cate['name'].toString().compareTo(
-                      widget.expense.category,
-                    ) ==
-                    0,
-                orElse: () => {'icon': Icon(Icons.category)},
-              )['icon'],
-            ),
+            child: Icon(category.icon),
           ),
           const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.expense.title,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                widget.expense.category,
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 13,
-                  color: Color(0xFFA3A3A3),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.expense.title,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ],
+                Text(
+                  widget.expense.category,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 13,
+                    color: Color(0xFFA3A3A3),
+                  ),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -128,10 +117,14 @@ class _TransactionItemState extends State<TransactionItem> {
               color: Colors.white,
               onSelected: (value) async {
                 if (value == 'Delete') {
-                  await expenseBox.deleteAt(widget.index);
-                  expenses.value =
-                      expenseBox.values.toList() as List<ExpenseModel>;
-                  setState(() {});
+                  final key = expenseBox.keys.firstWhere(
+                    (key) => expenseBox.get(key).uuid == widget.expense.uuid,
+                  );
+                  if (key != null) {
+                    await expenseBox.delete(key);
+                    expenses.value =
+                        expenseBox.values.toList() as List<ExpenseModel>;
+                  }
                 }
               },
             ),

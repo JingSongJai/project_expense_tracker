@@ -17,6 +17,16 @@ dependencies:
   flutter_svg: ^2.1.0
   fl_chart: ^1.0.0
   flutter_launcher_icons: ^0.14.3
+  flex_color_picker: ^3.7.1
+  shared_preferences: ^2.5.3
+  percent_indicator: ^4.2.5
+  carousel_slider: ^5.0.0
+  flutter_local_notifications: ^19.0.0
+  msix: ^3.16.9
+  window_manager: ^0.5.0
+  tray_manager: ^0.5.0
+  timezone: ^0.10.1
+  lottie: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +39,10 @@ flutter:
   assets:
     - assets/fonts/
     - assets/svg/
+    - assets/gif/
+    - assets/png/
+    - assets/ico/
+    - assets/json/
   fonts:
     - family: Kantumruy
       fonts:
@@ -51,3 +65,14 @@ flutter_launcher_icons:
     generate: true
     image_path: "assets/png/App Icon.png"
     icon_size: 256
+
+msix_config:
+  display_name: Expense Tracker
+  publisher_display_name: ANT
+  identity_name: com.ant.expanse-tracker
+  msix_version: 1.0.0.0
+  logo_path: assets/png/App Icon.png
+  capabilities: internetClient, location, microphone, webcam
+  certificate_path: C:\Users\Admin\CERTIFICATE.pfx
+  certificate_password: YourStrongPassword123
+  publisher: CN=Taing ChingSong
