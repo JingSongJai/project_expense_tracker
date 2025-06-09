@@ -1,0 +1,28 @@
+^D:\CODES\DART\APPLICATIONS\EXPANSE_TRACKER\BUILD\WINDOWS\X64\CMAKEFILES\D643D81BDEC458C41F96B5F89C211AF7\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=D:\Flutter\flutter PROJECT_DIR=D:\Codes\Dart\Applications\expanse_tracker FLUTTER_ROOT=D:\Flutter\flutter FLUTTER_EPHEMERAL_DIR=D:\Codes\Dart\Applications\expanse_tracker\windows\flutter\ephemeral PROJECT_DIR=D:\Codes\Dart\Applications\expanse_tracker FLUTTER_TARGET=D:\Codes\Dart\Applications\expanse_tracker\lib\main.dart DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\Codes\Dart\Applications\expanse_tracker\.dart_tool\package_config.json D:/Flutter/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CODES\DART\APPLICATIONS\EXPANSE_TRACKER\BUILD\WINDOWS\X64\CMAKEFILES\E58BE7E2C9FAA447233C8AAC895EE1D2\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CODES\DART\APPLICATIONS\EXPANSE_TRACKER\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Codes/Dart/Applications/expanse_tracker/windows -BD:/Codes/Dart/Applications/expanse_tracker/build/windows/x64 --check-stamp-file D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
