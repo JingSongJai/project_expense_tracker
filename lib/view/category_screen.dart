@@ -11,6 +11,7 @@ import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:expanse_tracker/data/responsive.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../utils/helper.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -43,16 +44,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     return Column(
       children: [
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
         Expanded(
           child: Row(
             children: [
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ValueListenableBuilder(
@@ -63,7 +64,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             Row(
                               children: [
                                 Text(
-                                  'Transactions',
+                                  'Your Categories'.tr,
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 const Spacer(),
@@ -114,11 +115,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ),
                 ),
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
       ],
     );
   }
@@ -126,7 +127,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget _buildCategoryItem(String name, IconData icon, Color color) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Center(
@@ -146,7 +147,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Text(
-            '\$ ${Helper.getCategoryTotal(name).isNaN ? Helper.getCategoryTotal(name).toInt() : Helper.getCategoryTotal(name).toStringAsFixed(2)}',
+            'amount'.trParams({
+              'number': Helper.getCategoryTotal(name).toStringAsFixed(2),
+            }),
             style: TextStyle(
               fontSize: 13,
               color:
@@ -171,11 +174,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
         expenses.value.where((expense) => expense.category == title).toList();
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.grey.shade100,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
@@ -226,7 +229,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Cancel', style: TextStyle(color: Colors.white)),
+          child: Text('Cancel'.tr, style: TextStyle(color: Colors.white)),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
@@ -260,7 +263,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Delete Category', style: TextStyle(color: Colors.white)),
+          child: Text(
+            'Delete Category'.tr,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
@@ -275,8 +281,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget _buildCategoryInputDialog() {
     return AlertDialog.adaptive(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      backgroundColor: Colors.white,
-      title: Text('Add Category', style: TextStyle(fontSize: 20)),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      title: Text('Add Category'.tr, style: TextStyle(fontSize: 20)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -284,11 +290,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
             controller: _cateNameController,
             style: TextStyle(fontSize: 14),
             decoration: InputDecoration(
-              hintText: 'Category Name',
+              hintText: 'Category Name'.tr,
               hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
               border: OutlineInputBorder(borderSide: BorderSide.none),
               filled: true,
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               prefixIcon: InkWell(
                 onTap: () async {
                   await showDialog(
@@ -305,7 +311,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Title can\'t be empty!';
+                return 'Title can\'t be empty!'.tr;
               }
               return null;
             },
@@ -330,7 +336,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Cancel', style: TextStyle(color: Colors.white)),
+          child: Text('Cancel'.tr, style: TextStyle(color: Colors.white)),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
@@ -369,7 +375,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Add', style: TextStyle(color: Colors.white)),
+          child: Text('Add'.tr, style: TextStyle(color: Colors.white)),
         ),
       ],
     );
@@ -379,7 +385,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       backgroundColor: Colors.white,
-      title: Text('Choose Icon', style: TextStyle(fontSize: 20)),
+      title: Text('Choose Icon'.tr, style: TextStyle(fontSize: 20)),
       content: SizedBox(
         height: 200,
         width: 100,

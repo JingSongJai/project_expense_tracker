@@ -28,6 +28,7 @@ INJECTED from D:\Codes\Dart\Applications\expanse_tracker\android\app\src\debug\A
 INJECTED from D:\Codes\Dart\Applications\expanse_tracker\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 MERGED from [:shared_preferences_android] D:\Codes\Dart\Applications\expanse_tracker\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_local_notifications] D:\Codes\Dart\Applications\expanse_tracker\build\flutter_local_notifications\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-10:12
+MERGED from [:flutter_native_splash] D:\Codes\Dart\Applications\expanse_tracker\build\flutter_native_splash\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] D:\Codes\Dart\Applications\expanse_tracker\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.media:media:1.1.0] C:\Users\Admin\.gradle\caches\8.10.2\transforms\cd79e8926f3586b575e2cf621318b1c2\transformed\media-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\Admin\.gradle\caches\8.10.2\transforms\0098a6e93522fecc805d8900172003dc\transformed\preference-1.2.1\AndroidManifest.xml:17:1-24:12
@@ -128,6 +129,8 @@ MERGED from [:shared_preferences_android] D:\Codes\Dart\Applications\expanse_tra
 MERGED from [:shared_preferences_android] D:\Codes\Dart\Applications\expanse_tracker\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_local_notifications] D:\Codes\Dart\Applications\expanse_tracker\build\flutter_local_notifications\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_local_notifications] D:\Codes\Dart\Applications\expanse_tracker\build\flutter_local_notifications\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_native_splash] D:\Codes\Dart\Applications\expanse_tracker\build\flutter_native_splash\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_native_splash] D:\Codes\Dart\Applications\expanse_tracker\build\flutter_native_splash\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] D:\Codes\Dart\Applications\expanse_tracker\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] D:\Codes\Dart\Applications\expanse_tracker\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [androidx.media:media:1.1.0] C:\Users\Admin\.gradle\caches\8.10.2\transforms\cd79e8926f3586b575e2cf621318b1c2\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41

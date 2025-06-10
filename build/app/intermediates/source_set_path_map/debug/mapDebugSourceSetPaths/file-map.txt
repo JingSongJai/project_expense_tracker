@@ -42,5 +42,6 @@ com.ant.expanse_tracker.app-packageDebugResources-40 D:\Codes\Dart\Applications\
 com.ant.expanse_tracker.app-packageDebugResources-41 D:\Codes\Dart\Applications\expanse_tracker\build\app\intermediates\incremental\debug\packageDebugResources\stripped.dir
 com.ant.expanse_tracker.app-debug-42 D:\Codes\Dart\Applications\expanse_tracker\build\app\intermediates\merged_res\debug\mergeDebugResources
 com.ant.expanse_tracker.app-debug-43 D:\Codes\Dart\Applications\expanse_tracker\build\flutter_local_notifications\intermediates\packaged_res\debug\packageDebugResources
-com.ant.expanse_tracker.app-debug-44 D:\Codes\Dart\Applications\expanse_tracker\build\path_provider_android\intermediates\packaged_res\debug\packageDebugResources
-com.ant.expanse_tracker.app-debug-45 D:\Codes\Dart\Applications\expanse_tracker\build\shared_preferences_android\intermediates\packaged_res\debug\packageDebugResources
+com.ant.expanse_tracker.app-debug-44 D:\Codes\Dart\Applications\expanse_tracker\build\flutter_native_splash\intermediates\packaged_res\debug\packageDebugResources
+com.ant.expanse_tracker.app-debug-45 D:\Codes\Dart\Applications\expanse_tracker\build\path_provider_android\intermediates\packaged_res\debug\packageDebugResources
+com.ant.expanse_tracker.app-debug-46 D:\Codes\Dart\Applications\expanse_tracker\build\shared_preferences_android\intermediates\packaged_res\debug\packageDebugResources

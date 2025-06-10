@@ -24,6 +24,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   bool isDarkMode = false;
+  String selectedLanguage = 'ENG';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,12 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       bottomNavigationBar:
-          Responsive.isMobile(context) ? buildBottomMenu() : null,
+          Responsive.isMobile(context)
+              ? BottomAppBar(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: buildBottomMenu(),
+              )
+              : null,
       endDrawer: _buildEndDrawer(),
     );
   }
@@ -50,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget buildBottomMenu() {
     return SafeArea(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(Constant.menus.length, (index) {
           return _buildMenuItem(
@@ -105,7 +112,7 @@ class _MainScreenState extends State<MainScreen> {
       color: Theme.of(context).colorScheme.secondary,
       child: Row(
         children: [
-          const SizedBox(width: 20),
+          const SizedBox(width: 10),
           if (Responsive.isMobile(context))
             CircleAvatar(
               backgroundImage: AssetImage('assets/png/App Icon.png'),
@@ -125,42 +132,72 @@ class _MainScreenState extends State<MainScreen> {
                   }),
             ),
           const Spacer(),
-          // IconButton(
-          //   onPressed: () {
-          //     final prefs = Get.find<SharedPreferences>();
-          //     isDarkMode = prefs.getBool('isDarkMode')!;
+          DropdownButton<String>(
+            value: selectedLanguage,
+            items: [
+              DropdownMenuItem(
+                value: 'ENG',
+                child: Text('ENG', style: TextStyle(fontSize: 12)),
+              ),
+              DropdownMenuItem(
+                value: 'KM',
+                child: Text('KM', style: TextStyle(fontSize: 12)),
+              ),
+            ],
+            onChanged: (value) {
+              if (value! == 'ENG') {
+                Get.updateLocale(Locale('en'));
+              } else {
+                Get.updateLocale(Locale('km'));
+              }
 
-          //     if (prefs.getBool('isDarkMode')!) {
-          //       Get.changeThemeMode(ThemeMode.light);
-          //       prefs.setBool('isDarkMode', false);
-          //       setState(() {
-          //         isDarkMode = false;
-          //       });
-          //     } else {
-          //       Get.changeThemeMode(ThemeMode.dark);
-          //       prefs.setBool('isDarkMode', true);
-          //       setState(() {
-          //         isDarkMode = true;
-          //       });
-          //     }
-          //   },
-          //   icon: AnimatedSwitcher(
-          //     duration: const Duration(milliseconds: 1000),
-          //     reverseDuration: const Duration(milliseconds: 1000),
-          //     child:
-          //         isDarkMode
-          //             ? Image.asset(
-          //               'assets/png/moon-fill.png',
-          //               color: Theme.of(context).colorScheme.primary,
-          //               width: 25,
-          //             )
-          //             : Image.asset(
-          //               'assets/png/sun-fill.png',
-          //               color: Theme.of(context).colorScheme.primary,
-          //               width: 25,
-          //             ),
-          //   ),
-          // ),
+              setState(() {
+                selectedLanguage = value;
+              });
+            },
+            underline: Container(),
+            dropdownColor: Theme.of(context).colorScheme.secondary,
+            isDense: true,
+            icon: Icon(Icons.arrow_drop_down, size: 20),
+          ),
+          const SizedBox(width: 10),
+          IconButton(
+            onPressed: () {
+              final prefs = Get.find<SharedPreferences>();
+              isDarkMode = prefs.getBool('isDarkMode')!;
+
+              if (prefs.getBool('isDarkMode')!) {
+                Get.changeThemeMode(ThemeMode.light);
+                prefs.setBool('isDarkMode', false);
+                setState(() {
+                  isDarkMode = false;
+                });
+              } else {
+                Get.changeThemeMode(ThemeMode.dark);
+                prefs.setBool('isDarkMode', true);
+                setState(() {
+                  isDarkMode = true;
+                });
+              }
+            },
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 1000),
+              reverseDuration: const Duration(milliseconds: 1000),
+              child:
+                  isDarkMode
+                      ? Image.asset(
+                        'assets/png/moon-fill.png',
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 25,
+                      )
+                      : Image.asset(
+                        'assets/png/sun-fill.png',
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 25,
+                      ),
+            ),
+          ),
+          const SizedBox(width: 10),
         ],
       ),
     );

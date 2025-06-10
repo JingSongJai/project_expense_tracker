@@ -8,6 +8,7 @@ import 'package:expanse_tracker/model/category_model.dart';
 import 'package:expanse_tracker/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 
@@ -25,16 +26,16 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
         Expanded(
           child: Row(
             children: [
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
@@ -43,7 +44,7 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
                       Row(
                         children: [
                           Text(
-                            'Your Budgets',
+                            'Your Budgets'.tr,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
@@ -74,11 +75,11 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
                   ),
                 ),
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
       ],
     );
   }
@@ -120,32 +121,27 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
                     return _data
                         .map(
                           (d) => PopupMenuItem(
-                            value: d,
-                            child: Text(d, style: TextStyle(fontSize: 12)),
+                            value: d.tr,
+                            child: Text(d.tr, style: TextStyle(fontSize: 12)),
                           ),
                         )
                         .toList();
                   },
                   color: Colors.white,
                   onSelected: (value) async {
-                    switch (value) {
-                      case 'Edit':
-                        break;
-                      case 'Delete':
-                        var key = (categoryBox.keys.toList().singleWhere(
-                          (key) => categoryBox.get(key).name == category.name,
-                        ));
-                        if (key != null) {
-                          final updatedCategory = categoryBox.get(key);
-                          updatedCategory.budget = null;
-                          updatedCategory.spent = null;
-                          await categoryBox.put(key, updatedCategory);
-                          categories.value =
-                              categoryBox.values.toList()
-                                  as List<CategoryModel>;
-                          Helper.getNotification();
-                        }
-                        break;
+                    if (value == 'Delete'.tr) {
+                      var key = (categoryBox.keys.toList().singleWhere(
+                        (key) => categoryBox.get(key).name == category.name,
+                      ));
+                      if (key != null) {
+                        final updatedCategory = categoryBox.get(key);
+                        updatedCategory.budget = null;
+                        updatedCategory.spent = null;
+                        await categoryBox.put(key, updatedCategory);
+                        categories.value =
+                            categoryBox.values.toList() as List<CategoryModel>;
+                        Helper.getNotification();
+                      }
                     }
                   },
                 ),
@@ -246,8 +242,8 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
   Widget _buildInputDialog() {
     return AlertDialog.adaptive(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      backgroundColor: Colors.white,
-      title: Text('Add Budgets', style: TextStyle(fontSize: 20)),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      title: Text('Add Budgets'.tr, style: TextStyle(fontSize: 20)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -255,11 +251,11 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
             controller: _budgetTextController,
             style: TextStyle(fontSize: 14),
             decoration: InputDecoration(
-              hintText: 'Budgets',
+              hintText: 'Budgets'.tr,
               hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
               border: OutlineInputBorder(borderSide: BorderSide.none),
               filled: true,
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               prefixIcon: Icon(
                 Icons.attach_money_rounded,
                 size: 20,
@@ -271,7 +267,7 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
             ],
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Title can\'t be empty!';
+                return 'Title can\'t be empty!'.tr;
               }
               return null;
             },
@@ -286,7 +282,7 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
                           DropdownMenuEntry(value: cate, label: cate.name),
                     )
                     .toList(),
-            hintText: 'Category',
+            hintText: 'Category'.tr,
             enableFilter: true,
             textStyle: TextStyle(fontSize: 14),
             leadingIcon: Icon(
@@ -296,11 +292,16 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
             ),
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(borderSide: BorderSide.none),
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               filled: true,
               hintStyle: TextStyle(fontSize: 14, color: Color(0xFFA3A3A3)),
             ),
             menuHeight: 200,
+            menuStyle: MenuStyle(
+              backgroundColor: WidgetStatePropertyAll(
+                Theme.of(context).scaffoldBackgroundColor,
+              ),
+            ),
           ),
         ],
       ),
@@ -316,7 +317,7 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Cancel', style: TextStyle(color: Colors.white)),
+          child: Text('Cancel'.tr, style: TextStyle(color: Colors.white)),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
@@ -351,7 +352,7 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Add', style: TextStyle(color: Colors.white)),
+          child: Text('Add'.tr, style: TextStyle(color: Colors.white)),
         ),
       ],
     );

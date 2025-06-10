@@ -29,7 +29,7 @@ class _SideBarWidgetState extends State<SideBarWidget> {
       minExtendedWidth: 220,
       extended: Constant.isExtended,
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      destinations: List.generate(Constant.menus.length, (index) {
+      destinations: List.generate(5, (index) {
         return NavigationRailDestination(
           icon: SvgPicture.asset(
             Constant.menus[index]['icon']!,

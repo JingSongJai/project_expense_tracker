@@ -4,6 +4,7 @@ import 'package:expanse_tracker/main.dart';
 import 'package:expanse_tracker/model/category_model.dart';
 import 'package:expanse_tracker/model/expense_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../data/constant.dart';
 
@@ -41,7 +42,7 @@ class _TransactionItemState extends State<TransactionItem> {
       margin: const EdgeInsets.only(bottom: 5),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 250, 250, 250),
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(5),
         border: Border(),
       ),
@@ -81,7 +82,12 @@ class _TransactionItemState extends State<TransactionItem> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '\$ ${!widget.expense.amount.isNaN ? widget.expense.amount.toInt().toString() : widget.expense.amount.toStringAsFixed(2)}',
+                'amount'.trParams({
+                  'number':
+                      !widget.expense.amount.isNaN
+                          ? widget.expense.amount.toInt().toString()
+                          : widget.expense.amount.toStringAsFixed(2),
+                }),
                 style: TextStyle(
                   color:
                       widget.expense.amount.isNegative
@@ -108,15 +114,15 @@ class _TransactionItemState extends State<TransactionItem> {
                 return _data
                     .map(
                       (d) => PopupMenuItem(
-                        value: d,
-                        child: Text(d, style: TextStyle(fontSize: 12)),
+                        value: d.tr,
+                        child: Text(d.tr, style: TextStyle(fontSize: 12)),
                       ),
                     )
                     .toList();
               },
               color: Colors.white,
               onSelected: (value) async {
-                if (value == 'Delete') {
+                if (value == 'Delete'.tr) {
                   final key = expenseBox.keys.firstWhere(
                     (key) => expenseBox.get(key).uuid == widget.expense.uuid,
                   );

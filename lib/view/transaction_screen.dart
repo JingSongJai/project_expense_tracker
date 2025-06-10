@@ -1,5 +1,6 @@
 import 'package:expanse_tracker/data/box.dart';
 import 'package:expanse_tracker/data/constant.dart';
+import 'package:expanse_tracker/data/responsive.dart';
 import 'package:expanse_tracker/main.dart';
 import 'package:expanse_tracker/model/expense_model.dart';
 import 'package:expanse_tracker/utils/helper.dart';
@@ -7,6 +8,7 @@ import 'package:expanse_tracker/widget/transaction_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
@@ -31,11 +33,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
   Widget _buildItems() {
     return Column(
       children: [
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
         Expanded(
           child: Row(
             children: [
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(20),
@@ -49,7 +51,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                       Row(
                         children: [
                           Text(
-                            'Transactions',
+                            'Your Transactions'.tr,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
@@ -145,11 +147,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
       ],
     );
   }
@@ -210,7 +212,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             minimumSize: Size.fromHeight(50),
           ),
           child: Text(
-            'Cancel',
+            'Cancel'.tr,
             style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
         ),
@@ -242,7 +244,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             minimumSize: Size.fromHeight(50),
           ),
           child: Text(
-            'Add',
+            'Add'.tr,
             style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
         ),
@@ -271,16 +273,16 @@ class _TransactionScreenState extends State<TransactionScreen> {
             controller: _titleTextController,
             style: TextStyle(fontSize: 14),
             decoration: InputDecoration(
-              hintText: 'Title',
+              hintText: 'Title'.tr,
               hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
               border: OutlineInputBorder(borderSide: BorderSide.none),
               filled: true,
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               prefixIcon: Icon(Icons.title, size: 20, color: Color(0xFF696969)),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Title can\'t be empty!';
+                return 'Title can\'t be empty!'.tr;
               }
               return null;
             },
@@ -290,11 +292,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
             controller: _amountTextController,
             style: TextStyle(fontSize: 14),
             decoration: InputDecoration(
-              hintText: 'Amount',
+              hintText: 'Amount'.tr,
               hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
               border: OutlineInputBorder(borderSide: BorderSide.none),
               filled: true,
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               prefixIcon: Icon(
                 Icons.numbers,
                 size: 20,
@@ -314,7 +316,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             ],
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Amount can\'t be empty!';
+                return 'Amount can\'t be empty!'.tr;
               }
               return null;
             },
@@ -329,7 +331,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                           DropdownMenuEntry(value: cate, label: cate.name),
                     )
                     .toList(),
-            hintText: 'Category',
+            hintText: 'Category'.tr,
             enableFilter: true,
             textStyle: TextStyle(fontSize: 14),
             leadingIcon: Icon(
@@ -339,7 +341,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             ),
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(borderSide: BorderSide.none),
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               filled: true,
               hintStyle: TextStyle(fontSize: 14, color: Color(0xFFA3A3A3)),
             ),
@@ -356,7 +358,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               width: double.infinity,
               height: 48,
               decoration: BoxDecoration(
-                color: Constant.backgroundColor,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(5),
               ),
               padding: const EdgeInsets.all(10),

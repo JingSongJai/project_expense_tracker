@@ -27,6 +27,8 @@ dependencies:
   tray_manager: ^0.5.0
   timezone: ^0.10.1
   lottie: ^3.3.1
+  flutter_native_splash: ^2.4.6
+  dio: ^5.8.0+1
 
 dev_dependencies:
   flutter_test:
@@ -76,3 +78,19 @@ msix_config:
   certificate_path: C:\Users\Admin\CERTIFICATE.pfx
   certificate_password: YourStrongPassword123
   publisher: CN=Taing ChingSong
+
+flutter_native_splash:
+  color: "#67bb6a"
+  image: assets/png/Splash Icon.png
+  branding: assets/png/Splash Icon.png
+  color_dark: "#121212"
+  image_dark: assets/png/Splash Icon.png
+  branding_dark: assets/png/Splash Icon.png
+
+  android_12:
+    image: assets/png/Splash Icon.png
+    icon_background_color: "#67bb6a"
+    image_dark: assets/png/Splash Icon.png
+    icon_background_color_dark: "#121212"
+
+  web: false

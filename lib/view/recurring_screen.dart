@@ -7,6 +7,7 @@ import 'package:expanse_tracker/model/recure_model.dart';
 import 'package:expanse_tracker/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
@@ -22,17 +23,17 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
         Expanded(
           child: Row(
             children: [
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
+                    color: Theme.of(context).colorScheme.secondary,
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -40,7 +41,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
                       Row(
                         children: [
                           Text(
-                            'Your Recurring Payment',
+                            'Your Recurring Payments'.tr,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
@@ -71,11 +72,11 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
                   ),
                 ),
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: Responsive.isMobile(context) ? 10 : 20),
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: Responsive.isMobile(context) ? 10 : 20),
       ],
     );
   }
@@ -115,15 +116,17 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
                 children: [
                   Text('Click'),
                   const SizedBox(width: 10),
-                  IconButton(
-                    icon: Icon(Icons.add, color: Colors.white, size: 20),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Constant.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                  AbsorbPointer(
+                    child: IconButton(
+                      icon: Icon(Icons.add, color: Colors.white, size: 20),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Constant.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
+                      onPressed: () {},
                     ),
-                    onPressed: () {},
                   ),
                   const SizedBox(width: 10),
                   Text('to add your recurring payments'),
@@ -165,7 +168,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      '${recure.category} ∙ ${recure.frequency}',
+                      '${recure.category} ∙ ${recure.frequency.tr}',
                       style: TextStyle(fontSize: 12),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -220,7 +223,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               Expanded(
                 child: _buildItemBox(
                   Color(category.color ?? 0xFF000000),
-                  'Amount',
+                  'Amount'.tr,
                   recure.amount.toString(),
                 ),
               ),
@@ -228,7 +231,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               Expanded(
                 child: _buildItemBox(
                   Color(category.color ?? 0xFF000000),
-                  'Next Due',
+                  'Next Due'.tr,
                   DateFormat('yyyy-MM-dd').format(
                     recure.startDate.add(
                       Helper.getDuration(
@@ -247,7 +250,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               Expanded(
                 child: _buildItemBox(
                   Color(category.color ?? 0xFF000000),
-                  'Total',
+                  'Total'.tr,
                   recure.total.toString(),
                 ),
               ),
@@ -255,7 +258,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               Expanded(
                 child: _buildItemBox(
                   Color(category.color ?? 0xFF000000),
-                  'End Date',
+                  'End Date'.tr,
                   DateFormat('yyyy-MM-dd').format(recure.endDate),
                 ),
               ),
@@ -359,7 +362,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
   Widget _buildInputDialog() {
     return AlertDialog.adaptive(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       title: Text('Add Recurring Payment', style: TextStyle(fontSize: 20)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -372,7 +375,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
               border: OutlineInputBorder(borderSide: BorderSide.none),
               filled: true,
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               prefixIcon: Icon(
                 Icons.attach_money_rounded,
                 size: 20,
@@ -395,7 +398,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
               border: OutlineInputBorder(borderSide: BorderSide.none),
               filled: true,
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               prefixIcon: Icon(
                 Icons.numbers,
                 size: 20,
@@ -432,11 +435,13 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               color: Color(0xFF696969),
             ),
             menuStyle: MenuStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.white),
+              backgroundColor: WidgetStatePropertyAll(
+                Theme.of(context).scaffoldBackgroundColor,
+              ),
             ),
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(borderSide: BorderSide.none),
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               filled: true,
               hintStyle: TextStyle(fontSize: 14, color: Color(0xFFA3A3A3)),
             ),
@@ -460,11 +465,13 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               color: Color(0xFF696969),
             ),
             menuStyle: MenuStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.white),
+              backgroundColor: WidgetStatePropertyAll(
+                Theme.of(context).scaffoldBackgroundColor,
+              ),
             ),
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(borderSide: BorderSide.none),
-              fillColor: Constant.backgroundColor,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
               filled: true,
               hintStyle: TextStyle(fontSize: 14, color: Color(0xFFA3A3A3)),
             ),
@@ -481,7 +488,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               width: double.infinity,
               height: 48,
               decoration: BoxDecoration(
-                color: Constant.backgroundColor,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(5),
               ),
               padding: const EdgeInsets.all(10),
@@ -510,7 +517,7 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
               width: double.infinity,
               height: 48,
               decoration: BoxDecoration(
-                color: Constant.backgroundColor,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(5),
               ),
               padding: const EdgeInsets.all(10),

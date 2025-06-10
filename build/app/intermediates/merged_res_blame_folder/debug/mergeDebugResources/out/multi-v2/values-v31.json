@@ -1,0 +1,52 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Admin\\.gradle\\daemon\\8.10.2\\com.ant.expanse_tracker.app-mergeDebugResources-40:\\values-v31\\values-v31.xml",
+            "map": [
+                {
+                    "source": "D:\\Codes\\Dart\\Applications\\expanse_tracker\\android\\app\\src\\main\\res\\values-v31\\styles.xml",
+                    "from": {
+                        "startLines": "3,18",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,1129",
+                        "endLines": "11,20",
+                        "endColumns": "12,12",
+                        "endOffsets": "778,1293"
+                    },
+                    "to": {
+                        "startLines": "2,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,665",
+                        "endLines": "10,13",
+                        "endColumns": "12,12",
+                        "endOffsets": "660,829"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.ant.expanse_tracker.app-mergeDebugResources-40:/values-v31/values-v31.xml",
+            "map": [
+                {
+                    "source": "D:\\Codes\\Dart\\Applications\\expanse_tracker\\android\\app\\src\\main\\res\\values-v31\\styles.xml",
+                    "from": {
+                        "startLines": "3,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "173,-1",
+                        "endLines": "11,-1",
+                        "endColumns": "12,-1",
+                        "endOffsets": "778,-1"
+                    },
+                    "to": {
+                        "startLines": "2,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,665",
+                        "endLines": "10,13",
+                        "endColumns": "12,12",
+                        "endOffsets": "660,829"
+                    }
+                }
+            ]
+        }
+    ]
+}
