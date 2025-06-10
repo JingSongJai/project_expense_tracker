@@ -88,41 +88,9 @@ class _HomeScreenState extends State<HomeScreen>
               mainAxisSize: MainAxisSize.max,
               children: [
                 const SizedBox(height: 20),
-                if (!Responsive.isMobile(context)) _buildStatis(),
+                _buildStatis(),
 
                 const SizedBox(height: 20),
-
-                if (Responsive.isMobile(context))
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      viewportFraction: 0.5,
-                      enlargeCenterPage: true,
-                      aspectRatio: 2 / 1,
-                    ),
-                    items: [
-                      StatisWidget(
-                        title: 'Expense',
-                        number: '\$ ${Helper.getTotalExpense()}',
-                        firstColor: Color(0xFFffbe96),
-                        secondColor: Color(0xFFfe8696),
-                        icon: Icons.money_off_rounded,
-                      ),
-                      StatisWidget(
-                        title: 'Income',
-                        number: '\$ ${Helper.getTotalIncome()}',
-                        firstColor: Color(0xFF8cc8f8),
-                        secondColor: Color(0xFF2992e6),
-                        icon: Icons.attach_money_rounded,
-                      ),
-                      StatisWidget(
-                        title: 'Total',
-                        number: '\$ ${Helper.getTotal()}',
-                        firstColor: Color(0xFF82d9d1),
-                        secondColor: Color(0xFF29d0b8),
-                        icon: Icons.monetization_on,
-                      ),
-                    ],
-                  ),
 
                 if (Responsive.isMobile(context)) const SizedBox(height: 10),
 
@@ -163,36 +131,43 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Widget _buildStatis() {
-    return Row(
+    return GridView(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: !Responsive.isMobile(context) ? 4 : 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        mainAxisExtent: 150,
+      ),
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       children: [
-        Expanded(
-          child: StatisWidget(
-            title: 'Expense',
-            number: '\$ ${Helper.getTotalExpense()}',
-            firstColor: Color(0xFFffbe96),
-            secondColor: Color(0xFFfe8696),
-            icon: Icons.money_off_rounded,
-          ),
+        StatisWidget(
+          title: 'Expense',
+          number: '\$ ${Helper.getTotalExpense()}',
+          firstColor: Color(0xFFFF6A88), // Coral Red
+          secondColor: Color(0xFFFF9A8B), // Soft Pink
+          icon: Icons.money_off_rounded,
         ),
-        const SizedBox(width: 20),
-        Expanded(
-          child: StatisWidget(
-            title: 'Income',
-            number: '\$ ${Helper.getTotalIncome()}',
-            firstColor: Color(0xFF8cc8f8),
-            secondColor: Color(0xFF2992e6),
-            icon: Icons.attach_money_rounded,
-          ),
+        StatisWidget(
+          title: 'Income',
+          number: '\$ ${Helper.getTotalIncome()}',
+          firstColor: Color(0xFF43C6AC), // Aqua Green
+          secondColor: Color(0xFF191654), // Deep Blue
+          icon: Icons.attach_money_rounded,
         ),
-        const SizedBox(width: 20),
-        Expanded(
-          child: StatisWidget(
-            title: 'Total',
-            number: '\$ ${Helper.getTotal()}',
-            firstColor: Color(0xFF82d9d1),
-            secondColor: Color(0xFF29d0b8),
-            icon: Icons.monetization_on,
-          ),
+        StatisWidget(
+          title: 'Total',
+          number: '\$ ${Helper.getTotal()}',
+          firstColor: Color(0xFF8E2DE2), // Royal Purple
+          secondColor: Color(0xFF4A00E0), // Electric Indigo
+          icon: Icons.monetization_on,
+        ),
+        StatisWidget(
+          title: 'Category',
+          number: '\$ ${Helper.getTotal()}',
+          firstColor: Color(0xFFFBD786), // Soft Gold
+          secondColor: Color(0xFFF7797D), // Warm Sunset
+          icon: Icons.category,
         ),
       ],
     );

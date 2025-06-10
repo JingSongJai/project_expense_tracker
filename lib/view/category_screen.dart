@@ -54,13 +54,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 7,
-                        color: Colors.grey.shade300,
-                        offset: Offset(0, 7),
-                      ),
-                    ],
                   ),
                   child: ValueListenableBuilder(
                     valueListenable: categories,

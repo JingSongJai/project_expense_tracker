@@ -28,14 +28,14 @@ class _SideBarWidgetState extends State<SideBarWidget> {
       ),
       minExtendedWidth: 220,
       extended: Constant.isExtended,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       destinations: List.generate(Constant.menus.length, (index) {
         return NavigationRailDestination(
           icon: SvgPicture.asset(
             Constant.menus[index]['icon']!,
             colorFilter: ColorFilter.mode(
               selectedIndex.value == index
-                  ? Constant.primaryColor
+                  ? Theme.of(context).colorScheme.primary
                   : Color(0xFF696969),
               BlendMode.srcIn,
             ),
@@ -47,7 +47,7 @@ class _SideBarWidgetState extends State<SideBarWidget> {
               fontSize: 13,
               color:
                   selectedIndex.value == index
-                      ? Constant.primaryColor
+                      ? Theme.of(context).colorScheme.primary
                       : Color(0xFF696969),
               fontWeight:
                   selectedIndex.value == index

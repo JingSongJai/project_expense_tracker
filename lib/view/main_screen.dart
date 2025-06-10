@@ -6,11 +6,14 @@ import 'package:expanse_tracker/view/budgets_screen.dart';
 import 'package:expanse_tracker/view/category_screen.dart';
 import 'package:expanse_tracker/view/home_screen.dart';
 import 'package:expanse_tracker/view/recurring_screen.dart';
+import 'package:expanse_tracker/view/settings_screen.dart';
 import 'package:expanse_tracker/view/transaction_screen.dart';
 import 'package:expanse_tracker/widget/alert_widget.dart';
 import 'package:expanse_tracker/widget/sidebar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,10 +23,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constant.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Row(
           children: [
@@ -88,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget buildBody() {
     return Container(
-      color: Constant.backgroundColor,
+      color: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [_buildTopBar(), Expanded(child: _buildPageDisplay())],
       ),
@@ -98,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget _buildTopBar() {
     return Container(
       height: 80,
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.secondary,
       child: Row(
         children: [
           const SizedBox(width: 20),
@@ -120,62 +124,42 @@ class _MainScreenState extends State<MainScreen> {
                     Constant.isExtended = !Constant.isExtended;
                   }),
             ),
-          // if (Responsive.isWindow(context) || Responsive.isTablet(context))
-          //   Expanded(
-          //     child: TextField(
-          //       style: TextStyle(fontSize: 13),
-          //       decoration: InputDecoration(
-          //         border: OutlineInputBorder(borderSide: BorderSide.none),
-          //         hintText: 'Search',
-          //         hintStyle: TextStyle(color: Color(0xFFA3A3A3)),
-          //         prefixIcon: Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: SvgPicture.asset(
-          //             'assets/svg/Search Icon.svg',
-          //             colorFilter: ColorFilter.mode(
-          //               Color(0xFFA3A3A3),
-          //               BlendMode.srcIn,
-          //             ),
-          //             width: 20,
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // const Spacer(),
-          // if (Responsive.isMobile(context))
-          //   SvgPicture.asset(
-          //     'assets/svg/Search Icon.svg',
-          //     colorFilter: ColorFilter.mode(Colors.black87, BlendMode.srcIn),
-          //   ),
-          // if (Responsive.isMobile(context)) const SizedBox(width: 10),
-          // Builder(
-          //   builder: (context) {
-          //     return GestureDetector(
-          //       onTap: () async {
-          //         Get.updateLocale(
-          //           Get.locale == Locale('en') ? Locale('km') : Locale('en'),
-          //         );
-          //         Get.changeTheme(
-          //           Get.isDarkMode ? ThemeData.light() : ThemeData.dark(),
-          //         );
-          //       },
-          //       child: ValueListenableBuilder(
-          //         valueListenable: Helper.alerts,
-          //         builder:
-          //             (context, value, child) => Badge.count(
-          //               count: value.length,
-          //               child: SvgPicture.asset(
-          //                 'assets/svg/Notification Icon.svg',
-          //                 colorFilter: ColorFilter.mode(
-          //                   Colors.grey.shade400,
-          //                   BlendMode.srcIn,
-          //                 ),
-          //               ),
-          //             ),
-          //       ),
-          //     );
+          const Spacer(),
+          // IconButton(
+          //   onPressed: () {
+          //     final prefs = Get.find<SharedPreferences>();
+          //     isDarkMode = prefs.getBool('isDarkMode')!;
+
+          //     if (prefs.getBool('isDarkMode')!) {
+          //       Get.changeThemeMode(ThemeMode.light);
+          //       prefs.setBool('isDarkMode', false);
+          //       setState(() {
+          //         isDarkMode = false;
+          //       });
+          //     } else {
+          //       Get.changeThemeMode(ThemeMode.dark);
+          //       prefs.setBool('isDarkMode', true);
+          //       setState(() {
+          //         isDarkMode = true;
+          //       });
+          //     }
           //   },
+          //   icon: AnimatedSwitcher(
+          //     duration: const Duration(milliseconds: 1000),
+          //     reverseDuration: const Duration(milliseconds: 1000),
+          //     child:
+          //         isDarkMode
+          //             ? Image.asset(
+          //               'assets/png/moon-fill.png',
+          //               color: Theme.of(context).colorScheme.primary,
+          //               width: 25,
+          //             )
+          //             : Image.asset(
+          //               'assets/png/sun-fill.png',
+          //               color: Theme.of(context).colorScheme.primary,
+          //               width: 25,
+          //             ),
+          //   ),
           // ),
         ],
       ),
@@ -186,7 +170,7 @@ class _MainScreenState extends State<MainScreen> {
     Helper.getNotification();
 
     return Drawer(
-      backgroundColor: Constant.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
           const SizedBox(height: 10),
@@ -247,9 +231,7 @@ class _MainScreenState extends State<MainScreen> {
         break;
 
       case 5:
-      case 6:
-      case 7:
-        widget = HomeScreen();
+        widget = SettingsScreen();
         break;
     }
 

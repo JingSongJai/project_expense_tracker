@@ -7,6 +7,8 @@ import 'package:expanse_tracker/data/constant.dart';
 import 'package:expanse_tracker/model/category_model.dart';
 import 'package:expanse_tracker/model/expense_model.dart';
 import 'package:expanse_tracker/model/recure_model.dart';
+import 'package:expanse_tracker/theme/dark.dart';
+import 'package:expanse_tracker/theme/light.dart';
 import 'package:expanse_tracker/translation/translation.dart';
 import 'package:expanse_tracker/view/main_screen.dart';
 import 'package:flutter/foundation.dart';
@@ -24,6 +26,10 @@ late ValueNotifier<List<RecureModel>> recures;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Get.putAsync(() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs;
+  });
 
   tz.initializeTimeZones();
 
@@ -38,7 +44,7 @@ void main() async {
   await NotificationController.initNotification();
   await NotificationController.requestPermission();
 
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  SharedPreferences prefs = Get.find<SharedPreferences>();
 
   await Hive.initFlutter();
 
@@ -53,6 +59,11 @@ void main() async {
   recureBox = await Hive.openBox<RecureModel>('recures');
 
   if (prefs.getBool('isFirstTime') == null) {
+    //Init ThemeMode
+    final prefs = Get.find<SharedPreferences>();
+    await prefs.setBool('isDarkMode', false);
+
+    //Init Category
     categoryBox.addAll(
       Constant.expenseCategories
           .map((data) => CategoryModel.fromJson(data))
@@ -88,17 +99,12 @@ class MainApp extends StatelessWidget {
       title: name,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Kantumruy',
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Constant.accentColor,
-            elevation: 0,
-            textStyle: TextStyle(color: Colors.white, fontFamily: 'Kantumruy'),
-          ),
-        ),
-        useMaterial3: true,
-      ),
+      theme: light,
+      darkTheme: dark,
+      themeMode:
+          Get.find<SharedPreferences>().getBool('isDarkMode')!
+              ? ThemeMode.dark
+              : ThemeMode.light,
       home: MainScreen(),
       translations: AppTranslation(),
       locale: Locale('en'),

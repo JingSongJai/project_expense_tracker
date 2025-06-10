@@ -5,14 +5,17 @@ D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/tray_m
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/window_manager_plugin.dll
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/flutter_local_notifications_windows.dll
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin
+D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin.json
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.json
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/fonts/KantumruyPro.ttf
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/gif/Empty%20Gif.gif
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/ico/app_icon.ico
+D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/json/Empty%20Icon.json
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/png/App%20Icon.png
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Budgets%20Icon.svg
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Category%20Icon.svg
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Check%20Icon.svg
+D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Empty%20Data%20Icon.svg
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Empty%20Icon.svg
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Graph%20Icon.svg
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/assets/svg/Group%20Icon.svg
@@ -29,6 +32,7 @@ D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/f
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/kernel_blob.bin
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/NativeAssetsManifest.json
+D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES.Z
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/packages/flex_color_picker/assets/opacity.png
 D:/Codes/Dart/Applications/expanse_tracker/build/windows/x64/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

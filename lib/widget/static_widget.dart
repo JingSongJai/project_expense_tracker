@@ -87,7 +87,7 @@ class _StatisWidgetState extends State<StatisWidget> {
                     children: [
                       Text(widget.title, style: TextStyle(fontSize: 11)),
                       const Spacer(),
-                      Icon(widget.icon, size: 15),
+                      Icon(widget.icon, size: 20),
                     ],
                   ),
                   Text(

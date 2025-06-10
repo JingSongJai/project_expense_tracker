@@ -41,7 +41,10 @@ class _PieChartWidgetState extends State<PieChartWidget> {
                   360,
               showTitle: true,
               title: data['total'].toString(),
-              titleStyle: TextStyle(fontSize: 10, color: Colors.white),
+              titleStyle: TextStyle(
+                fontSize: 10,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
               radius: 60,
             );
           },
@@ -67,7 +70,7 @@ class _PieChartWidgetState extends State<PieChartWidget> {
         duration: const Duration(milliseconds: 100),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -100,7 +103,7 @@ class _PieChartWidgetState extends State<PieChartWidget> {
                   ),
                   child: DropdownButton<String>(
                     isDense: true,
-                    dropdownColor: Colors.white,
+                    dropdownColor: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(5),
                     value: selectedText,
                     underline: Container(color: Colors.blue),

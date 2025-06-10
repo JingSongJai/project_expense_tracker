@@ -33,13 +33,6 @@ class _RecurringPaymentScreenState extends State<RecurringPaymentScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 7,
-                        color: Colors.grey.shade300,
-                        offset: Offset(0, 7),
-                      ),
-                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,

@@ -40,15 +40,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 7,
-                        color: Colors.grey.shade300,
-                        offset: Offset(0, 7),
-                      ),
-                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -67,11 +60,12 @@ class _TransactionScreenState extends State<TransactionScreen> {
                           IconButton(
                             icon: Icon(
                               Icons.add,
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.secondary,
                               size: 20,
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Constant.primaryColor,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -120,7 +114,10 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                       IconButton(
                                         icon: Icon(
                                           Icons.add,
-                                          color: Colors.white,
+                                          color:
+                                              Theme.of(
+                                                context,
+                                              ).colorScheme.secondary,
                                           size: 20,
                                         ),
                                         style: ElevatedButton.styleFrom(
@@ -171,7 +168,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
             );
           }),
       onSelected: (value) {},
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.secondary,
     );
   }
 
@@ -189,14 +186,14 @@ class _TransactionScreenState extends State<TransactionScreen> {
               child: Text(_dataGroup[index], style: TextStyle(fontSize: 12)),
             );
           }),
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.secondary,
     );
   }
 
   Widget _buildInputDialog() {
     return AlertDialog.adaptive(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       title: Text('Add Transaction', style: TextStyle(fontSize: 20)),
       content: _buildContent(),
       actions: [
@@ -212,7 +209,10 @@ class _TransactionScreenState extends State<TransactionScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Cancel', style: TextStyle(color: Colors.white)),
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+          ),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
@@ -241,7 +241,10 @@ class _TransactionScreenState extends State<TransactionScreen> {
             ),
             minimumSize: Size.fromHeight(50),
           ),
-          child: Text('Add', style: TextStyle(color: Colors.white)),
+          child: Text(
+            'Add',
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+          ),
         ),
       ],
     );
